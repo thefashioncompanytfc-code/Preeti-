@@ -125,3 +125,46 @@ body {
         transform: translateY(0);
     }
 }
+#celebrateBtn {
+    margin-top: 25px;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 25px;
+    background: #8b3a62;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+    transition: transform 0.2s ease;
+}
+
+#celebrateBtn:active {
+    transform: scale(0.92);
+}
+
+#confetti-container {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 10;
+}
+
+.confetti {
+    position: absolute;
+    top: -20px;
+    width: 8px;
+    height: 14px;
+    background: #8b3a62;
+    animation: confettiFall 4s linear forwards;
+}
+
+@keyframes confettiFall {
+    from {
+        transform: translateY(0) rotate(0deg);
+    }
+
+    to {
+        transform: translateY(110vh) rotate(720deg);
+    }
+}
