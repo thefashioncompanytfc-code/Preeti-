@@ -1,306 +1,211 @@
-/* =========================================================
-   PREETI BIRTHDAY WEBSITE
-   MAIN INTERACTION SCRIPT
-========================================================= */
-
-document.addEventListener("DOMContentLoaded", () => {
-
-    /* =====================================================
-       ELEMENTS
-    ====================================================== */
-
-    const curtainContainer = document.getElementById("curtain-container");
-    const leftCurtain = document.getElementById("left-curtain");
-    const rightCurtain = document.getElementById("right-curtain");
-
-    const openingMessage = document.getElementById("opening-message");
-    const startButton = document.getElementById("start-button");
-
-    const candleMessage = document.getElementById("candle-message");
-    const blowButton = document.getElementById("blow-button");
-
-    const nextScene = document.getElementById("next-scene");
-    const continueButton = document.getElementById("continue-button");
-
-    const birthdayGirl = document.querySelector(".birthday-girl");
-
-    const flames = document.querySelectorAll(".flame");
-
-    const confettiContainer =
-        document.getElementById("confetti-container");
+// ===============================
+// PREETI BIRTHDAY WEBSITE
+// Main JavaScript
+// ===============================
 
 
-    /* =====================================================
-       INITIAL STATE
-    ====================================================== */
+// ---------- PAGE NAVIGATION ----------
 
-    let curtainsOpened = false;
-    let candlesBlown = false;
+function goToPage(pageId) {
+    document.querySelectorAll(".page").forEach(page => {
+        page.classList.remove("active");
+    });
 
-    // Prevent scrolling during the cinematic opening.
-    document.body.classList.add("opening-active");
+    const targetPage = document.getElementById(pageId);
 
-
-    /* =====================================================
-       OPEN CURTAINS
-    ====================================================== */
-
-    function openCurtains() {
-
-        if (curtainsOpened) return;
-
-        curtainsOpened = true;
-
-        // Hide opening button.
-        openingMessage.classList.add("fade-out");
-
-        // Small delay before curtain movement.
-        setTimeout(() => {
-
-            curtainContainer.classList.add("curtains-opening");
-
-            leftCurtain.classList.add("curtain-open-left");
-            rightCurtain.classList.add("curtain-open-right");
-
-        }, 300);
-
-
-        // Reveal birthday scene.
-        setTimeout(() => {
-
-            document.body.classList.remove("opening-active");
-
-            document.body.classList.add("birthday-revealed");
-
-            revealBirthdayCharacters();
-
-        }, 2200);
-
-
-        // Show candle instruction.
-        setTimeout(() => {
-
-            candleMessage.classList.remove("hidden");
-            candleMessage.classList.add("message-show");
-
-        }, 3500);
-    }
-
-
-    /* =====================================================
-       CHARACTER REVEAL
-    ====================================================== */
-
-    function revealBirthdayCharacters() {
-
-        const characters =
-            document.querySelectorAll(".character");
-
-        characters.forEach((character, index) => {
-
-            setTimeout(() => {
-
-                character.classList.add("character-visible");
-
-            }, index * 180);
-
+    if (targetPage) {
+        targetPage.classList.add("active");
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
         });
-
     }
+}
 
 
-    /* =====================================================
-       BLOW CANDLES
-    ====================================================== */
+// ---------- SAD SCREEN ----------
 
-    function blowCandles() {
+function showSad(sadPageId, nextPageId, delay = 2500) {
+    goToPage(sadPageId);
 
-        if (candlesBlown) return;
+    const sadPage = document.getElementById(sadPageId);
 
-        candlesBlown = true;
+    if (!sadPage) return;
 
-        // Extinguish every flame.
-        flames.forEach((flame, index) => {
+    const button = sadPage.querySelector(".buttons");
 
-            setTimeout(() => {
+    if (button) {
+        button.style.display = "none";
 
-                flame.classList.add("flame-out");
+        setTimeout(() => {
+            button.style.display = "flex";
+        }, delay);
+    }
+}
 
-            }, index * 180);
 
+// ---------- OPENING CURTAINS ----------
+
+window.addEventListener("load", () => {
+
+    const curtains = document.querySelectorAll(".curtain");
+
+    setTimeout(() => {
+        curtains.forEach(curtain => {
+            curtain.classList.add("open");
         });
+    }, 500);
 
+    // Show opening buttons after the intro
+    setTimeout(() => {
+        const openingButtons = document.getElementById("openingButtons");
 
-        // Hide candle instruction.
-        candleMessage.classList.add("fade-out");
-
-
-        // Birthday girl reacts.
-        if (birthdayGirl) {
-
-            birthdayGirl.classList.add("birthday-reaction");
-
+        if (openingButtons) {
+            openingButtons.style.display = "flex";
         }
+    }, 4500);
+
+});
 
 
-        // Confetti celebration.
-        setTimeout(() => {
+// ---------- OPENING: NOT INTERESTED ----------
 
-            createConfetti();
-
-        }, 700);
-
-
-        // Move to next stage.
-        setTimeout(() => {
-
-            nextScene.classList.remove("hidden");
-
-            nextScene.classList.add("scene-show");
-
-        }, 1800);
-
-    }
+function notInterested() {
+    showSad("openingSad", "page1", 2500);
+}
 
 
-    /* =====================================================
-       CONFETTI
-    ====================================================== */
+// ---------- BLESSING VIDEO ----------
 
-    function createConfetti() {
+const blessingVideo = document.getElementById("blessingVideo");
 
-        if (!confettiContainer) return;
+function startBlessingVideo() {
 
-        const pieces = 45;
+    goToPage("page3");
 
-        for (let i = 0; i < pieces; i++) {
+    if (blessingVideo) {
+        blessingVideo.currentTime = 0;
 
-            const confetti =
-                document.createElement("span");
+        const playPromise = blessingVideo.play();
 
-            confetti.classList.add("confetti-piece");
-
-            // Random horizontal position.
-            confetti.style.left =
-                Math.random() * 100 + "%";
-
-            // Random animation delay.
-            confetti.style.animationDelay =
-                Math.random() * 0.8 + "s";
-
-            // Random falling duration.
-            confetti.style.animationDuration =
-                2.5 + Math.random() * 2.5 + "s";
-
-            // Random size.
-            confetti.style.width =
-                5 + Math.random() * 6 + "px";
-
-            confetti.style.height =
-                8 + Math.random() * 10 + "px";
-
-            // Random rotation.
-            confetti.style.transform =
-                `rotate(${Math.random() * 360}deg)`;
-
-            confettiContainer.appendChild(confetti);
-
+        if (playPromise !== undefined) {
+            playPromise.catch(error => {
+                console.log("Blessing video could not autoplay:", error);
+            });
         }
+    }
+}
 
-        // Remove confetti after animation.
-        setTimeout(() => {
 
-            confettiContainer.innerHTML = "";
+// When blessing video finishes
+if (blessingVideo) {
 
-        }, 6000);
+    blessingVideo.addEventListener("ended", () => {
+        goToPage("page4");
+    });
 
+}
+
+
+// ---------- SKIP FRIEND ----------
+
+function skipFriend() {
+    showSad("friendSad", "page4", 2500);
+}
+
+
+// ---------- WISH VIDEO ----------
+
+const wishVideo = document.getElementById("wishVideo");
+
+function startWishVideo() {
+
+    goToPage("page5");
+
+    if (wishVideo) {
+        wishVideo.currentTime = 0;
+
+        const playPromise = wishVideo.play();
+
+        if (playPromise !== undefined) {
+            playPromise.catch(error => {
+                console.log("Wish video could not autoplay:", error);
+            });
+        }
+    }
+}
+
+
+// ---------- NEXT AFTER WISH ----------
+
+function nextAfterWish() {
+
+    if (wishVideo) {
+        wishVideo.pause();
     }
 
+    goToPage("page6");
+}
 
-    /* =====================================================
-       CONTINUE TO NEXT SCENE
-    ====================================================== */
 
-    function continueToNextScene() {
+// ---------- FEEDBACK ----------
 
-        /*
-           Scene 2 will be connected here later.
+function goodWebsite() {
+    goToPage("page7");
+}
 
-           For now we simply give a small visual
-           transition. The actual next scene will be
-           added after Scene 1 is finished.
-        */
+function needsWork() {
+    goToPage("page8");
+}
 
-        nextScene.classList.add("scene-exit");
 
-        setTimeout(() => {
+// ---------- START CAKE CELEBRATION ----------
 
-            alert(
-                "Scene 2 coming next! 🎉"
-            );
+function goToCake() {
+    goToPage("page9");
+}
 
-            nextScene.classList.remove("scene-exit");
 
-        }, 700);
+// ---------- CAKE VIDEO ----------
 
+const cakeVideo = document.getElementById("cakeVideo");
+
+function startCakeVideo() {
+
+    goToPage("page10");
+
+    if (cakeVideo) {
+        cakeVideo.currentTime = 0;
+
+        const playPromise = cakeVideo.play();
+
+        if (playPromise !== undefined) {
+            playPromise.catch(error => {
+                console.log("Cake video could not autoplay:", error);
+            });
+        }
     }
+}
 
 
-    /* =====================================================
-       BUTTON EVENTS
-    ====================================================== */
+// When cake video finishes
+if (cakeVideo) {
 
-    if (startButton) {
+    cakeVideo.addEventListener("ended", () => {
 
-        startButton.addEventListener(
-            "click",
-            openCurtains
-        );
+        const thankYouButton = document.getElementById("thankYouButton");
 
-    }
-
-
-    if (blowButton) {
-
-        blowButton.addEventListener(
-            "click",
-            blowCandles
-        );
-
-    }
-
-
-    if (continueButton) {
-
-        continueButton.addEventListener(
-            "click",
-            continueToNextScene
-        );
-
-    }
-
-
-    /* =====================================================
-       OPTIONAL: KEYBOARD CONTROL
-    ====================================================== */
-
-    document.addEventListener("keydown", (event) => {
-
-        // Space / Enter opens curtains.
-        if (
-            !curtainsOpened &&
-            (
-                event.code === "Space" ||
-                event.code === "Enter"
-            )
-        ) {
-
-            event.preventDefault();
-
-            openCurtains();
-
+        if (thankYouButton) {
+            thankYouButton.style.display = "flex";
         }
 
     });
 
-});
+}
+
+
+// ---------- FINAL PAGE ----------
+
+function showFinalPage() {
+    goToPage("page11");
+}
