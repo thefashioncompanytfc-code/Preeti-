@@ -1,33 +1,47 @@
-<script src="script.js" defer></script>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Happy Birthday Preeti</title>
 
     <!-- Elegant fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 
     <style>
+
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
         }
 
-        html, body {
+        html,
+        body {
             width: 100%;
             min-height: 100%;
         }
 
         body {
             font-family: "DM Sans", sans-serif;
+
             background:
-                radial-gradient(circle at 50% 20%, rgba(255, 226, 235, 0.9), transparent 35%),
-                linear-gradient(145deg, #fff8f5, #f8e8e9 50%, #eee0e5);
+                radial-gradient(
+                    circle at 50% 20%,
+                    rgba(255, 226, 235, 0.9),
+                    transparent 35%
+                ),
+                linear-gradient(
+                    145deg,
+                    #fff8f5,
+                    #f8e8e9 50%,
+                    #eee0e5
+                );
+
             color: #3b2630;
             overflow-x: hidden;
         }
@@ -38,14 +52,22 @@
             cursor: pointer;
         }
 
+
+        /* =================================
+           COMMON PAGE
+        ================================= */
+
         .page {
             min-height: 100vh;
             min-height: 100svh;
             width: 100%;
+
             display: none;
             align-items: center;
             justify-content: center;
+
             padding: 24px;
+
             position: relative;
             overflow: hidden;
         }
@@ -56,35 +78,47 @@
         }
 
         @keyframes pageIn {
+
             from {
                 opacity: 0;
                 transform: scale(0.98);
             }
+
             to {
                 opacity: 1;
                 transform: scale(1);
             }
+
         }
 
-        /* --------------------------------
+
+        /* =================================
            DECORATIONS
-        -------------------------------- */
+        ================================= */
 
         .balloon {
             position: absolute;
+
             width: 58px;
             height: 72px;
+
             border-radius: 50% 50% 46% 46%;
+
             opacity: 0.78;
+
             animation: float 5s ease-in-out infinite;
         }
 
         .balloon::after {
             content: "";
+
             position: absolute;
+
             width: 1px;
             height: 85px;
+
             background: rgba(92, 54, 67, 0.25);
+
             left: 50%;
             top: 70px;
         }
@@ -99,6 +133,7 @@
             background: #d7bd8d;
             right: 8%;
             top: 18%;
+
             animation-delay: 1s;
         }
 
@@ -106,6 +141,7 @@
             background: #b9899c;
             left: 13%;
             bottom: 12%;
+
             animation-delay: 2s;
         }
 
@@ -113,42 +149,69 @@
             background: #e6c9a8;
             right: 13%;
             bottom: 13%;
+
             animation-delay: 1.5s;
         }
 
         @keyframes float {
-            0%, 100% {
+
+            0%,
+            100% {
                 transform: translateY(0) rotate(-3deg);
             }
+
             50% {
                 transform: translateY(-15px) rotate(3deg);
             }
+
         }
 
         .sparkles {
             position: absolute;
             inset: 0;
+
             pointer-events: none;
+
             background-image:
-                radial-gradient(circle, rgba(170, 120, 135, 0.25) 1px, transparent 1px);
+                radial-gradient(
+                    circle,
+                    rgba(170, 120, 135, 0.25) 1px,
+                    transparent 1px
+                );
+
             background-size: 32px 32px;
+
             opacity: 0.35;
         }
 
-        /* --------------------------------
+
+        /* =================================
            CURTAINS
-        -------------------------------- */
+        ================================= */
 
         .curtain {
             position: fixed;
+
             top: 0;
+
             width: 50%;
             height: 100%;
+
             z-index: 100;
+
             background:
-                linear-gradient(90deg, #5a263d, #8d4b63 45%, #682d47);
-            box-shadow: 0 0 35px rgba(49, 21, 32, 0.4);
-            transition: transform 1.8s cubic-bezier(.77,0,.18,1);
+                linear-gradient(
+                    90deg,
+                    #5a263d,
+                    #8d4b63 45%,
+                    #682d47
+                );
+
+            box-shadow:
+                0 0 35px rgba(49, 21, 32, 0.4);
+
+            transition:
+                transform 1.8s cubic-bezier(.77,0,.18,1);
         }
 
         .curtain.left {
@@ -167,21 +230,33 @@
             transform: translateX(100%);
         }
 
-        /* --------------------------------
+
+        /* =================================
            CARD
-        -------------------------------- */
+        ================================= */
 
         .card {
             position: relative;
+
             z-index: 2;
+
             width: min(520px, 94vw);
+
             padding: 42px 26px;
+
             text-align: center;
-            border: 1px solid rgba(157, 104, 120, 0.2);
+
+            border:
+                1px solid rgba(157, 104, 120, 0.2);
+
             border-radius: 30px;
-            background: rgba(255, 250, 248, 0.72);
+
+            background:
+                rgba(255, 250, 248, 0.72);
+
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
+
             box-shadow:
                 0 25px 70px rgba(99, 52, 69, 0.14),
                 inset 0 1px 0 rgba(255,255,255,0.8);
@@ -189,56 +264,81 @@
 
         .eyebrow {
             font-size: 0.78rem;
+
             letter-spacing: 3px;
+
             text-transform: uppercase;
+
             color: #967080;
+
             margin-bottom: 12px;
         }
 
-        h1, h2 {
+        h1,
+        h2 {
             font-family: "Cormorant Garamond", serif;
+
             font-weight: 600;
+
             color: #632d45;
         }
 
         h1 {
             font-size: clamp(3rem, 13vw, 5.2rem);
+
             line-height: 0.95;
+
             margin-bottom: 15px;
         }
 
         h2 {
             font-size: clamp(2.1rem, 9vw, 3.4rem);
+
             line-height: 1;
+
             margin-bottom: 18px;
         }
 
         .subtitle {
             color: #735965;
+
             font-size: 0.98rem;
+
             line-height: 1.7;
+
             max-width: 420px;
+
             margin: 0 auto;
         }
 
-        /* --------------------------------
+
+        /* =================================
            BUTTONS
-        -------------------------------- */
+        ================================= */
 
         .buttons {
             display: flex;
+
             flex-direction: column;
+
             gap: 13px;
+
             margin-top: 30px;
         }
 
         .btn {
             width: 100%;
+
             padding: 15px 22px;
+
             border-radius: 999px;
+
             font-size: 0.96rem;
+
             font-weight: 600;
+
             letter-spacing: 0.2px;
+
             transition:
                 transform 0.25s ease,
                 box-shadow 0.25s ease,
@@ -255,42 +355,69 @@
 
         .primary {
             color: white;
-            background: linear-gradient(135deg, #783b55, #a45e76);
-            box-shadow: 0 10px 25px rgba(120, 59, 85, 0.25);
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #783b55,
+                    #a45e76
+                );
+
+            box-shadow:
+                0 10px 25px rgba(120, 59, 85, 0.25);
         }
 
         .primary:hover {
-            box-shadow: 0 14px 30px rgba(120, 59, 85, 0.32);
+            box-shadow:
+                0 14px 30px rgba(120, 59, 85, 0.32);
         }
 
         .secondary {
             color: #704455;
-            background: rgba(255,255,255,0.65);
-            border: 1px solid rgba(126, 73, 94, 0.18);
+
+            background:
+                rgba(255,255,255,0.65);
+
+            border:
+                1px solid rgba(126, 73, 94, 0.18);
         }
 
         .secondary:hover {
-            background: rgba(255,255,255,0.9);
+            background:
+                rgba(255,255,255,0.9);
         }
 
-        /* --------------------------------
+
+        /* =================================
            SAD SCREEN
-        -------------------------------- */
+        ================================= */
 
         .sad-face {
             font-size: 4.5rem;
+
             margin-bottom: 15px;
-            animation: sadFloat 2s ease-in-out infinite;
+
+            animation:
+                sadFloat 2s ease-in-out infinite;
         }
 
         @keyframes sadFloat {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-7px); }
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-7px);
+            }
+
         }
 
-        /* --------------------------------
+
+        /* =================================
            VIDEO
-        -------------------------------- */
+        ================================= */
 
         .video-card {
             width: min(560px, 95vw);
@@ -298,55 +425,226 @@
 
         .video-wrap {
             width: 100%;
+
             border-radius: 22px;
+
             overflow: hidden;
+
             background: #24161d;
-            box-shadow: 0 20px 55px rgba(65, 31, 45, 0.2);
+
+            box-shadow:
+                0 20px 55px rgba(65, 31, 45, 0.2);
         }
 
         video {
             width: 100%;
+
             display: block;
+
             max-height: 70vh;
+
             object-fit: contain;
+
             background: #24161d;
         }
 
         .video-note {
             margin-top: 14px;
+
             color: #806773;
+
             font-size: 0.84rem;
+
+            text-align: center;
         }
 
-        /* --------------------------------
-           WISH VIDEO
-        -------------------------------- */
 
-        .wish-title {
-            margin-bottom: 22px;
-        }
-
-        /* --------------------------------
+        /* =================================
            FOOTER
-        -------------------------------- */
+        ================================= */
 
         .tiny {
             margin-top: 22px;
+
             font-size: 0.76rem;
+
             color: #9a7c87;
         }
 
-        /* --------------------------------
+
+        /* =================================
+           FINAL CREDITS
+        ================================= */
+
+        #creditsPage {
+            background:
+                radial-gradient(
+                    circle at center,
+                    #24131d 0%,
+                    #100b0e 55%,
+                    #050405 100%
+                );
+
+            color: white;
+
+            overflow: hidden;
+
+            padding: 0;
+        }
+
+        .credits-scene {
+            position: absolute;
+
+            inset: 0;
+
+            display: flex;
+
+            justify-content: center;
+
+            overflow: hidden;
+        }
+
+        .credits-scroll {
+            position: absolute;
+
+            width: min(800px, 90vw);
+
+            text-align: center;
+
+            top: 100%;
+
+            animation:
+                creditsRoll 25s linear forwards;
+        }
+
+        @keyframes creditsRoll {
+
+            from {
+                transform: translateY(0);
+            }
+
+            to {
+                transform: translateY(-145%);
+            }
+
+        }
+
+        .credits-title {
+            font-family:
+                "Cormorant Garamond",
+                serif;
+
+            font-size:
+                clamp(3rem, 10vw, 6rem);
+
+            letter-spacing: 3px;
+
+            color: #f7d9df;
+
+            margin-bottom: 80px;
+        }
+
+        .credit-block {
+            margin-bottom: 55px;
+        }
+
+        .credit-label {
+            font-size: 0.72rem;
+
+            letter-spacing: 4px;
+
+            text-transform: uppercase;
+
+            color: #b997a2;
+
+            margin-bottom: 10px;
+        }
+
+        .credit-name {
+            font-family:
+                "Cormorant Garamond",
+                serif;
+
+            font-size:
+                clamp(1.7rem, 6vw, 2.8rem);
+
+            color: #fff4f6;
+
+            line-height: 1.15;
+        }
+
+        .credit-small {
+            font-size: 0.95rem;
+
+            color: #cbb4bb;
+
+            margin-top: 12px;
+
+            line-height: 1.7;
+        }
+
+        .credit-divider {
+            width: 70px;
+
+            height: 1px;
+
+            background: rgba(255,255,255,0.25);
+
+            margin: 60px auto;
+        }
+
+        .credit-ending {
+            font-family:
+                "Cormorant Garamond",
+                serif;
+
+            font-size:
+                clamp(1.4rem, 5vw, 2.2rem);
+
+            color: #e8c5ce;
+
+            margin-bottom: 100px;
+        }
+
+        .credits-skip {
+            position: fixed;
+
+            right: 20px;
+            bottom: 20px;
+
+            z-index: 10;
+
+            padding: 10px 17px;
+
+            border-radius: 999px;
+
+            background:
+                rgba(255,255,255,0.1);
+
+            border:
+                1px solid rgba(255,255,255,0.18);
+
+            color: #fff;
+
+            font-size: 0.8rem;
+
+            backdrop-filter: blur(8px);
+        }
+
+
+        /* =================================
            MOBILE
-        -------------------------------- */
+        ================================= */
 
         @media (max-width: 480px) {
+
             .page {
                 padding: 16px;
             }
 
             .card {
                 padding: 34px 20px;
+
                 border-radius: 24px;
             }
 
@@ -369,20 +667,36 @@
             .balloon.four {
                 right: -3%;
             }
+
+            .credits-scroll {
+                width: 88vw;
+            }
+
+            .credit-block {
+                margin-bottom: 45px;
+            }
+
         }
+
     </style>
 </head>
 
+
 <body>
 
-    <!-- CURTAINS -->
+
+    <!-- =================================
+         CURTAINS
+    ================================= -->
+
     <div class="curtain left" id="curtainLeft"></div>
+
     <div class="curtain right" id="curtainRight"></div>
 
 
-    <!-- =========================
+    <!-- =================================
          PAGE 1 — OPENING
-    ========================== -->
+    ================================= -->
 
     <section class="page active" id="page1">
 
@@ -393,90 +707,129 @@
         <div class="balloon three"></div>
         <div class="balloon four"></div>
 
+
         <div class="card">
 
-            <div class="eyebrow">A little celebration for you</div>
+            <div class="eyebrow">
+                A little celebration for you
+            </div>
 
-            <h1>Happy Birthday<br>Preeti</h1>
+            <h1>
+                Happy Birthday<br>
+                Preeti
+            </h1>
 
             <p class="subtitle">
                 A small surprise made with good wishes,
                 a little creativity, and hopefully a smile.
             </p>
 
-            <div class="buttons" id="openingButtons" style="display:none;">
 
-                <button class="btn primary" onclick="goToPage('page2')">
+            <div
+                class="buttons"
+                id="openingButtons"
+                style="display:none;"
+            >
+
+                <button
+                    class="btn primary"
+                    onclick="goToPage('page2')"
+                >
                     Let's Celebrate ✨
                 </button>
 
-                <button class="btn secondary" onclick="showSad('openingSad')">
+
+                <button
+                    class="btn secondary"
+                    onclick="showSad('openingSad')"
+                >
                     Na, not interested 😶
                 </button>
 
             </div>
 
         </div>
+
     </section>
 
 
-    <!-- =========================
+    <!-- =================================
          PAGE 1B — SAD OPENING
-    ========================== -->
+    ================================= -->
 
     <section class="page" id="openingSad">
 
         <div class="card">
 
-            <div class="sad-face">☹️</div>
+            <div class="sad-face">
+                ☹️
+            </div>
 
-            <h2>Oh... okay 😭</h2>
+            <h2>
+                Oh... okay 😭
+            </h2>
 
             <p class="subtitle">
                 I'll just give you one more chance.
             </p>
 
+
             <div class="buttons">
-                <button class="btn primary" onclick="goToPage('page2')">
+
+                <button
+                    class="btn primary"
+                    onclick="goToPage('page2')"
+                >
                     Okay, Let's Celebrate 😅
                 </button>
+
             </div>
 
         </div>
+
     </section>
 
 
-    <!-- =========================
+    <!-- =================================
          PAGE 2 — BLESSINGS INTRO
-    ========================== -->
+    ================================= -->
 
     <section class="page" id="page2">
 
         <div class="card">
 
-            <div class="eyebrow">Before the celebration</div>
+            <div class="eyebrow">
+                Before the celebration
+            </div>
 
-            <h2>Let's take blessings first</h2>
+            <h2>
+                Let's take blessings first
+            </h2>
 
             <p class="subtitle">
                 One small moment before we continue.
             </p>
 
+
             <div class="buttons">
 
-                <button class="btn primary" onclick="startBlessingVideo()">
+                <button
+                    class="btn primary"
+                    onclick="startBlessingVideo()"
+                >
                     Let's take blessings ✨
                 </button>
 
             </div>
 
         </div>
+
     </section>
 
 
-    <!-- =========================
+    <!-- =================================
          PAGE 3 — BLESSING VIDEO
-    ========================== -->
+    ================================= -->
 
     <section class="page" id="page3">
 
@@ -484,84 +837,119 @@
 
             <div class="video-wrap">
 
-                <video id="blessingVideo" playsinline>
-                    <source src="assets/blessing.mp4" type="video/mp4">
+                <video
+                    id="blessingVideo"
+                    playsinline
+                >
+
+                    <source
+                        src="assets/blessing.mp4"
+                        type="video/mp4"
+                    >
+
                     Your browser does not support video.
+
                 </video>
 
             </div>
+
 
             <p class="video-note">
                 Let the blessings play till the end ✨
             </p>
 
         </div>
+
     </section>
 
 
-    <!-- =========================
+    <!-- =================================
          PAGE 4 — FRIEND WISH CHOICE
-    ========================== -->
+    ================================= -->
 
     <section class="page" id="page4">
 
         <div class="card">
 
-            <div class="eyebrow">Now comes the important part</div>
+            <div class="eyebrow">
+                Now comes the important part
+            </div>
 
-            <h2>Let's take wishes from your so-called friend 😏</h2>
+            <h2>
+                Let's take wishes from your
+                so-called friend 😏
+            </h2>
 
             <p class="subtitle">
                 You probably know who that is.
             </p>
 
+
             <div class="buttons">
 
-                <button class="btn primary" onclick="goToPage('page5')">
+                <button
+                    class="btn primary"
+                    onclick="goToPage('page5')"
+                >
                     Let's take wishes from him
                 </button>
 
-                <button class="btn secondary" onclick="showSad('friendSad')">
+
+                <button
+                    class="btn secondary"
+                    onclick="showSad('friendSad')"
+                >
                     Na, skip him 😶
                 </button>
 
             </div>
 
         </div>
+
     </section>
 
 
-    <!-- =========================
+    <!-- =================================
          PAGE 4B — SAD FRIEND
-    ========================== -->
+    ================================= -->
 
     <section class="page" id="friendSad">
 
         <div class="card">
 
-            <div class="sad-face">☹️</div>
+            <div class="sad-face">
+                ☹️
+            </div>
 
-            <h2>Skipping already? 😭</h2>
+            <h2>
+                Skipping already? 😭
+            </h2>
 
             <p class="subtitle">
-                Fine... but this button isn't giving up that easily.
+                Fine... but this button isn't
+                giving up that easily.
             </p>
+
 
             <div class="buttons">
 
-                <button class="btn primary" onclick="goToPage('page4')">
+                <button
+                    class="btn primary"
+                    onclick="goToPage('page4')"
+                >
                     Let's take wishes from him 😅
                 </button>
 
             </div>
 
         </div>
+
     </section>
 
 
-    <!-- =========================
+    <!-- =================================
          PAGE 5 — WISH VIDEO
-    ========================== -->
+    ================================= -->
 
     <section class="page" id="page5">
 
@@ -569,276 +957,63 @@
 
             <div class="video-wrap">
 
-                <video id="wishVideo" playsinline controls>
-                    <source src="assets/wish.mp4" type="video/mp4">
+                <video
+                    id="wishVideo"
+                    playsinline
+                    controls
+                >
+
+                    <source
+                        src="assets/wish.mp4"
+                        type="video/mp4"
+                    >
+
                     Your browser does not support video.
+
                 </video>
 
             </div>
 
+
             <div class="buttons">
 
-                <button class="btn primary" onclick="goToPage('page6')">
+                <button
+                    class="btn primary"
+                    onclick="goToPage('page6')"
+                >
                     Next →
                 </button>
 
             </div>
 
         </div>
+
     </section>
 
 
-    <!-- =========================
+    <!-- =================================
          PAGE 6 — FEEDBACK
-    ========================== -->
+    ================================= -->
 
     <section class="page" id="page6">
 
         <div class="card">
 
-            <div class="eyebrow">One last question</div>
+            <div class="eyebrow">
+                One last question
+            </div>
 
-            <h2>So... how did you like the website?</h2>
+            <h2>
+                So... how did you like the website?
+            </h2>
 
             <p class="subtitle">
                 Your honest review is officially requested. 😌
             </p>
 
-            <div class="buttons">
-
-                <button class="btn primary" onclick="goToPage('page7')">
-                    👍 It's good
-                </button>
-
-                <button class="btn secondary" onclick="goToPage('page8')">
-                    😅 It needs some work
-                </button>
-
-            </div>
-
-        </div>
-    </section>
-
-
-    <!-- =========================
-         PAGE 7 — GOOD RESPONSE
-    ========================== -->
-
-    <section class="page" id="page7">
-
-        <div class="card">
-
-            <div class="sad-face">📝</div>
-
-            <h2>Your remarks will be recorded.</h2>
-
-            <p class="subtitle">
-                Thank you for the official review. 😂
-            </p>
 
             <div class="buttons">
 
-                <button class="btn primary" onclick="goToPage('page9')">
-                    Let's celebrate with cake 🎂
-                </button>
-
-            </div>
-
-        </div>
-    </section>
-
-
-    <!-- =========================
-         PAGE 8 — NEEDS WORK
-    ========================== -->
-
-    <section class="page" id="page8">
-
-        <div class="card">
-
-            <div class="sad-face">😂</div>
-
-            <h2>Okay, fair enough.</h2>
-
-            <p class="subtitle">
-                I'll come with a better one next year. 😅
-            </p>
-
-            <div class="buttons">
-
-                <button class="btn primary" onclick="goToPage('page9')">
-                    Let's celebrate with cake 🎂
-                </button>
-
-            </div>
-
-        </div>
-    </section>
-
-
-    <!-- =========================
-         PAGE 9 — CAKE INTRO
-    ========================== -->
-
-    <section class="page" id="page9">
-
-        <div class="card">
-
-            <div class="eyebrow">And finally...</div>
-
-            <h2>Let's celebrate your birthday with cake 🎂</h2>
-
-            <p class="subtitle">
-                Because no birthday celebration is complete without it.
-            </p>
-
-            <div class="buttons">
-
-                <button class="btn primary" onclick="startCakeVideo()">
-                    Cut the cake 🎂
-                </button>
-
-            </div>
-
-        </div>
-    </section>
-
-
-    <!-- =========================
-         PAGE 10 — CAKE VIDEO
-    ========================== -->
-
-    <section class="page" id="page10">
-
-        <div class="video-card">
-
-            <div class="video-wrap">
-
-                <video id="cakeVideo" playsinline>
-                    <source src="assets/cake.mp4" type="video/mp4">
-                    Your browser does not support video.
-                </video>
-
-            </div>
-
-            <p class="video-note">
-                🎂✨
-            </p>
-
-            <div class="buttons" id="thankYouButton" style="display:none;">
-
-                <button class="btn primary" onclick="goToPage('page11')">
-                    Continue
-                </button>
-
-            </div>
-
-        </div>
-    </section>
-
-
-    <!-- =========================
-         PAGE 11 — FINAL
-    ========================== -->
-
-    <section class="page" id="page11">
-
-        <div class="sparkles"></div>
-
-        <div class="card">
-
-            <div class="eyebrow">The end</div>
-
-            <h1>Thank You 🌷</h1>
-
-            <p class="subtitle">
-                Hope you have a wonderful year ahead,
-                filled with happiness, peace and beautiful memories.
-            </p>
-
-            <p class="tiny">
-                Made with good wishes.
-            </p>
-
-        </div>
-    </section>
-
-
-    <script>
-
-        /* =====================================
-           PAGE NAVIGATION
-        ====================================== */
-
-        function goToPage(pageId) {
-
-            const pages = document.querySelectorAll(".page");
-
-            pages.forEach(page => {
-                page.classList.remove("active");
-            });
-
-            const nextPage = document.getElementById(pageId);
-
-            if (nextPage) {
-                nextPage.classList.add("active");
-
-                window.scrollTo({
-                    top: 0,
-                    behavior: "smooth"
-                });
-            }
-        }
-
-
-        /* =====================================
-           SAD SCREEN
-        ====================================== */
-
-        function showSad(pageId) {
-
-            goToPage(pageId);
-
-        }
-
-
-        /* =====================================
-           OPENING CURTAINS
-        ====================================== */
-
-        window.addEventListener("load", () => {
-
-            setTimeout(() => {
-
-                document.getElementById("curtainLeft")
-                    .classList.add("open");
-
-                document.getElementById("curtainRight")
-                    .classList.add("open");
-
-            }, 500);
-
-
-            /* Show buttons after 4 seconds */
-
-            setTimeout(() => {
-
-                document.getElementById("openingButtons")
-                    .style.display = "flex";
-
-                document.getElementById("openingButtons")
-                    .style.animation = "pageIn 0.7s ease forwards";
-
-            }, 4500);
-
-        });
-
-
-        /* =====================================
-           BLESSING VIDEO
-        ====================================== */
-
-        const blessingVideo =
-            document.getElementById("blessingVideo");
-
-        blessingVideo.a
+                <button
+                    class="btn primary"
+      
